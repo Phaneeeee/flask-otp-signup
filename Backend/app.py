@@ -5,7 +5,7 @@ import mysql.connector
 import bcrypt
 import os
 from .config import DB_CONFIG
-from otp_utils import generate_otp, send_otp_email
+from .otp_utils import generate_otp, send_otp_email
 from datetime import datetime, timedelta
 
 app = Flask(__name__,
