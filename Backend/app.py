@@ -37,13 +37,30 @@ def get_db_connection():
 def signup():
     try:
         data = request.json
-        # ... your existing code ...
+        print("Signup request data:", data, flush=True)
+
+        email = data.get('email')
+        name = data.get('full_name') or data.get('name')
+        password = data.get('password')
+
+        if not email or not name or not password:
+            print("Missing required signup fields", flush=True)
+            return jsonify({'error': 'Email, name, and password are required'}), 400
+
+        # Hash the password
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password_str = hashed_password.decode('utf-8')
+
+        # Generate OTP and expiry time
+        otp = generate_otp()
+        otp_expiry = datetime.now() + timedelta(minutes=10)
 
         try:
             send_otp_email(email, otp)
+            print(f"OTP sent to email: {email}", flush=True)
         except Exception as e:
-            print("Error sending OTP:", e)
-            return jsonify({'error': 'Failed to send OTP'}), 500
+            print("Error sending OTP:", e, flush=True)
+            return jsonify({'error': 'Failed to send OTP email'}), 500
 
         try:
             conn = get_db_connection()
@@ -62,14 +79,16 @@ def signup():
             cursor.close()
             conn.close()
 
+            print(f"User {email} signed up successfully with OTP generated.", flush=True)
+
         except Exception as e:
-            print("Database error:", e)
+            print("Database error during signup:", e, flush=True)
             return jsonify({'error': 'Database error: ' + str(e)}), 500
 
         return jsonify({'message': 'OTP sent to your email'}), 200
 
     except Exception as e:
-        print("Signup route error:", e)
+        print("Signup route error:", e, flush=True)
         return jsonify({'error': 'Signup failed due to server error'}), 500
 
 
