@@ -1,13 +1,17 @@
 import os
 
-DB_CONFIG = {
-    'host': os.environ.get('MYSQL_ADDON_HOST'),
-    'user': os.environ.get('MYSQL_ADDON_USER'),
-    'password': os.environ.get('MYSQL_ADDON_PASSWORD'),
-    'database': os.environ.get('MYSQL_ADDON_DB')
-}
+# Load from environment variables set in Render
+DB_HOST = os.getenv("MYSQL_ADDON_HOST")
+DB_PORT = os.getenv("MYSQL_ADDON_PORT")
+DB_USER = os.getenv("MYSQL_ADDON_USER")
+DB_PASSWORD = os.getenv("MYSQL_ADDON_PASSWORD")
+DB_NAME = os.getenv("MYSQL_ADDON_DB")
 
-EMAIL_CONFIG = {
-    'EMAIL_ADDRESS': os.environ.get('EMAIL_ADDRESS'),
-    'EMAIL_PASSWORD': os.environ.get('EMAIL_PASSWORD')
-}
+SQLALCHEMY_DATABASE_URI = (
+    f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# Email credentials
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
