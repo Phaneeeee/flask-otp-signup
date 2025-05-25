@@ -1,10 +1,10 @@
 import os
 
 DB_CONFIG = {
-    'host': os.environ.get('DB_HOST', 'localhost'),
-    'user': os.environ.get('DB_USER', 'root'),
-    'password': os.environ.get('DB_PASSWORD', ''),
-    'database': os.environ.get('DB_NAME', 'user_auth_db')
+    'host': os.environ.get('MYSQL_ADDON_HOST'),
+    'user': os.environ.get('MYSQL_ADDON_USER'),
+    'password': os.environ.get('MYSQL_ADDON_PASSWORD'),
+    'database': os.environ.get('MYSQL_ADDON_DB')
 }
 
 EMAIL_CONFIG = {
