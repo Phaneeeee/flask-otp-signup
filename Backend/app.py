@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify, render_template
 import mysql.connector
 import bcrypt
 import os
-from config import DB_CONFIG
+from .config import DB_CONFIG
 from otp_utils import generate_otp, send_otp_email
 from datetime import datetime, timedelta
 
