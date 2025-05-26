@@ -1,11 +1,11 @@
 import os
 
 DB_CONFIG = {
-    "DB_HOST": os.getenv("MYSQL_ADDON_HOST"),
-    "DB_PORT": os.getenv("MYSQL_ADDON_PORT"),
-    "DB_USER": os.getenv("MYSQL_ADDON_USER"),
-    "DB_PASSWORD": os.getenv("MYSQL_ADDON_PASSWORD"),
-    "DB_NAME": os.getenv("MYSQL_ADDON_DB")
+    "host": os.getenv("MYSQL_ADDON_HOST"),
+    "port": int(os.getenv("MYSQL_ADDON_PORT")),  # cast to int if used
+    "user": os.getenv("MYSQL_ADDON_USER"),
+    "password": os.getenv("MYSQL_ADDON_PASSWORD"),
+    "database": os.getenv("MYSQL_ADDON_DB")
 }
 
 EMAIL_CONFIG = {
