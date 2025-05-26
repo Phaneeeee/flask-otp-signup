@@ -14,7 +14,7 @@ A web application built using **Flask**, **MySQL**, and **HTML/CSS/JS** that sup
 ## 🧰 Features
 
 - ✅ User Signup with email
-- ✅ OTP sent to email for verification (expires in 10 mins)
+- ✅ OTP sent to email for verification (expires in 2 mins)
 - ✅ Secure password hashing with bcrypt
 - ✅ Email verification required for login
 - ✅ Clean dashboard with Logout button styled with red border
