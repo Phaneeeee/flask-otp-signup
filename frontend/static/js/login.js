@@ -8,7 +8,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
   messageBox.textContent = ""; // Clear previous messages
 
   try {
-    const response = await fetch("http://127.0.0.1:5000/login", {
+    // ✅ Use relative path for deployment compatibility
+    const response = await fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       messageBox.textContent = result.message || "Login successful!";
       // Optionally redirect after a delay
       setTimeout(() => {
-        window.location.href = "/dashboard"; // Change to your desired route
+        window.location.href = "/dashboard"; // Change if your dashboard URL is different
       }, 1500);
     } else {
       messageBox.style.color = "red";
