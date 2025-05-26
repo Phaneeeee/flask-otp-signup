@@ -28,7 +28,8 @@ document.getElementById("verifyForm").addEventListener("submit", async function 
   const data = { email, otp };
 
   try {
-    const response = await fetch("http://127.0.0.1:5000/verify-otp", {
+    // ✅ Use relative path for deployment
+    const response = await fetch("/verify-otp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
