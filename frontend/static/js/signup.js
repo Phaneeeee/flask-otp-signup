@@ -7,7 +7,8 @@ document.getElementById("signupForm").addEventListener("submit", async function 
   messageBox.textContent = ""; // Clear previous messages
 
   try {
-    const response = await fetch("http://127.0.0.1:5000/signup", {
+    // Use relative URL here for deployment
+    const response = await fetch("/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -16,11 +17,8 @@ document.getElementById("signupForm").addEventListener("submit", async function 
     const result = await response.json();
 
     if (response.ok) {
-      // Store email to localStorage for OTP verification
       localStorage.setItem("emailForOtp", data.email);
-      // Store success message to show in otp.html
       sessionStorage.setItem("otpMessage", "OTP sent successfully!");
-      // Redirect to OTP verification page
       window.location.href = "/otp";
     } else {
       messageBox.textContent = result.error || "Signup failed.";
