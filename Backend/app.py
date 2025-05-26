@@ -8,6 +8,8 @@ from .config import DB_CONFIG
 from .otp_utils import generate_otp, send_otp_email
 from datetime import datetime, timedelta
 
+conn = mysql.connector.connect(**DB_CONFIG)
+
 app = Flask(__name__,
             template_folder='../frontend/templates',
             static_folder='../frontend/static')
