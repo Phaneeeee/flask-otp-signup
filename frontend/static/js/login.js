@@ -5,10 +5,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
   const data = Object.fromEntries(formData.entries());
 
   const messageBox = document.getElementById("loginMessage");
-  messageBox.textContent = ""; // Clear previous messages
+  messageBox.textContent = "";
 
   try {
-    // ✅ Use relative path for deployment compatibility
     const response = await fetch("/login", {
       method: "POST",
       headers: {
@@ -24,7 +23,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       messageBox.textContent = result.message || "Login successful!";
       // Optionally redirect after a delay
       setTimeout(() => {
-        window.location.href = "/dashboard"; // Change if your dashboard URL is different
+        window.location.href = "/dashboard";
       }, 1500);
     } else {
       messageBox.style.color = "red";
