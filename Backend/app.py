@@ -14,7 +14,6 @@ app = Flask(__name__,
             template_folder='../frontend/templates',
             static_folder='../frontend/static')
 
-# Serve frontend pages
 @app.route('/')
 def landing():
     return render_template('landing.html')
@@ -31,7 +30,6 @@ def login_page():
 def otp_page():
     return render_template('otp.html')
 
-# Connect to MySQL
 def get_db_connection():
     return mysql.connector.connect(**DB_CONFIG)
 
@@ -49,11 +47,9 @@ def signup():
             print("Missing required signup fields", flush=True)
             return jsonify({'error': 'Email, name, and password are required'}), 400
 
-        # Hash the password
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         hashed_password_str = hashed_password.decode('utf-8')
 
-        # Generate OTP and expiry time
         otp = generate_otp()
         otp_expiry = datetime.now() + timedelta(minutes=10)
 
