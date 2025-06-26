@@ -115,7 +115,7 @@ def verify_otp():
 
         otp_expiry = user['otp_expiry']
         if isinstance(otp_expiry, str):
-            otp_expiry = datetime.strptime(otp_expiry, '%Y-%m-%d %H:%M:%S')  # Adjust format
+            otp_expiry = datetime.strptime(otp_expiry, '%Y-%m-%d %H:%M:%S') 
 
         if datetime.now() > otp_expiry:
             return jsonify({'error': 'OTP expired'}), 400
