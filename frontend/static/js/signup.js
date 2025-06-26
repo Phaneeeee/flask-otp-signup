@@ -4,10 +4,9 @@ document.getElementById("signupForm").addEventListener("submit", async function 
   const formData = new FormData(this);
   const data = Object.fromEntries(formData.entries());
   const messageBox = document.getElementById("message");
-  messageBox.textContent = ""; // Clear previous messages
+  messageBox.textContent = "";
 
   try {
-    // Use relative URL here for deployment
     const response = await fetch("/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
