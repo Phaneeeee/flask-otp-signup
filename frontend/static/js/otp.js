@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const messageBox = document.getElementById("otpMessage");
 
-  // Show "OTP sent successfully!" message from sessionStorage
   const otpMessage = sessionStorage.getItem("otpMessage");
   if (otpMessage) {
     messageBox.textContent = otpMessage;
     messageBox.style.color = "green";
-    sessionStorage.removeItem("otpMessage"); // Clear after showing
+    sessionStorage.removeItem("otpMessage");
   }
 });
 
@@ -28,7 +27,6 @@ document.getElementById("verifyForm").addEventListener("submit", async function 
   const data = { email, otp };
 
   try {
-    // ✅ Use relative path for deployment
     const response = await fetch("/verify-otp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
