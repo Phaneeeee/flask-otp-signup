@@ -157,7 +157,6 @@ def login():
 
         stored_hash = user['password_hash']
 
-        # stored_hash from DB is string, convert to bytes for bcrypt
         if isinstance(stored_hash, str):
             stored_hash = stored_hash.encode('utf-8')
 
